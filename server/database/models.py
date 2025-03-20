@@ -10,4 +10,3 @@ class Product(Base):
     name = Column(String, nullable=False)
     description = Column(String)
     price = Column(Float, nullable=False)
-    discount = Column(Float, nullable=False)
