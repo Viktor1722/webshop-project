@@ -7,7 +7,7 @@ from alembic import context
 
 # Import your Base from models.py
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-from server.database.models import Base  # Adjust if necessary
+from server.database.models import Base  # Ensure this path is correct
 
 # Load the Alembic configuration
 config = context.config

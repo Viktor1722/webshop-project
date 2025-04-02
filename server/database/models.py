@@ -10,3 +10,8 @@ class Product(Base):
     name = Column(String, nullable=False)
     description = Column(String)
     price = Column(Float, nullable=False)
+
+    # size = Column(String, nullable=False)
+    # category = Column(String)
+    # stock = Column(Integer, default=0)
+

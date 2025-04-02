@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from database.database import SessionLocal, engine
 from database import models
+from fastapi.middleware.cors import CORSMiddleware
 
 import crud
 import schemas
@@ -9,16 +10,33 @@ import schemas
 # Initialize FastAPI app
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+def get_db():
+    db = SessionLocal()  # Create a new database session
+    try:
+        yield db  # Provide the session to the request
+    finally:
+        db.close()  # Close the session when the request is done
+
+
+@app.get("/products/", response_model=list[schemas.ProductResponse])
+def get_all_products(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    products = crud.get_products(db, skip, limit)
+    if not products:
+        raise HTTPException(status_code=404, detail="No products found")
+    return products
+
+
 # Create tables if they don't exist
 models.Base.metadata.create_all(bind=engine)
 
 # Dependency to get DB session
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 # Create a product
 @app.post("/products/", response_model=schemas.ProductResponse)

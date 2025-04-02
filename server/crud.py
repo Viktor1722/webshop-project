@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from database.models import Product
 from schemas import ProductCreate, ProductUpdate
 
+# this file handles database interactions 
 def create_product(db: Session, product: ProductCreate):
     new_product = Product(**product.dict()) #converts the product = model from the schemas request to an actual product = dictionary 
     db.add(new_product) #adds the new product to the session
