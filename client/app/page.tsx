@@ -12,10 +12,6 @@ export default function Home() {
     "https://images.unsplash.com/photo-1482189349482-3defd547e0e9?q=80&w=2848&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ];
 
-  const productImage = [
-    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  ];
-
   return (
     <main className=" bg-white">
       <div>
@@ -49,11 +45,7 @@ export default function Home() {
           </ImagesSlider>
         </section>
         <div className="container mx-auto m-10">
-          <ProductCard
-            imageUrl={productImage[0]}
-            title={"jwf"}
-            price={"100"}
-          ></ProductCard>
+          <ProductCard></ProductCard>
         </div>
       </div>
     </main>

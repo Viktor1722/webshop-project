@@ -5,7 +5,7 @@ class ProductBase(BaseModel):
     name: str
     description: Optional[str] = None
     price: float
-
+    image: str
     # stock: Optional[int] = 0
     # size: str
     # category: Optional[str] = None
