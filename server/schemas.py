@@ -6,9 +6,20 @@ class ProductBase(BaseModel):
     description: Optional[str] = None
     price: float
     image: str
-    # stock: Optional[int] = 0
-    # size: str
-    # category: Optional[str] = None
+  
+class ProductVariantCreate(BaseModel): 
+    size: str
+    stock: int
+
+class ProductImageCreate(BaseModel):
+    image_url: str
+    alt_text: Optional[str] = None
+    order: Optional[int] = 0
+
+class ProductDetailCreate(BaseModel):
+    materials: Optional[str] = None
+    care_instructions: Optional[str] = None
+    sizing_guide_url: Optional[str] = None  
 
 class ProductCreate(ProductBase):
     pass

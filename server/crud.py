@@ -1,6 +1,8 @@
 from sqlalchemy.orm import Session
 from database.models import Product
 from schemas import ProductCreate, ProductUpdate
+from database import models 
+import schemas
 
 # this file handles database interactions 
 def create_product(db: Session, product: ProductCreate):
@@ -31,3 +33,6 @@ def delete_product(db: Session, product_id: int):
         db.delete(product)
         db.commit()
     return product
+
+def get_product_with_details(db: Session, product_id: int): 
+    return db.query(models.Product).filter(models.Product.id == product_id).first()
